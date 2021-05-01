@@ -282,13 +282,13 @@ if ((${tot} > 0)); then
 		#printf "\nPar time (stage 2): $ytime secs." | tee -a unified.report
 		printf "\nEnd-to-end time: $ttime secs.\n\n" | tee -a unified.report
 	else
-		printf "\n#Tests run (stage 1 in ${s1_t} secs.): ${s1_r}" | tee -a unified.report
-		printf "\n#Failed tests (stage 1): $flakes" | tee -a unified.report
-		printf "\n#Tests run (stage 2 in ${s2_t} secs.): ${s2_r}" | tee -a unified.report
-		printf "\n#Failed tests (stage 2): ${flakes1}" | tee -a unified.report
+		#printf "\n#Tests run (stage 1 in ${s1_t} secs.): ${s1_r}" | tee -a unified.report
+		#printf "\n#Failed tests (stage 1): $flakes" | tee -a unified.report
+		#printf "\n#Tests run (stage 2 in ${s2_t} secs.): ${s2_r}" | tee -a unified.report
+		#printf "\n#Failed tests (stage 2): ${flakes1}" | tee -a unified.report
 		#printf "\nPar time (stage 1): $xtime secs." | tee -a unified.report
 		#printf "\nPar time (stage 2): $ytime secs." | tee -a unified.report
-		printf "\nEnd-to-end time: $ttime secs.\n\n" | tee -a unified.report
+		#printf "\nEnd-to-end time: $ttime secs.\n\n" | tee -a unified.report
 		
 		#printf "I have entered else......................."
 		
@@ -416,7 +416,12 @@ if ((${tot} > 0)); then
 		cd xPASTE_PROJ
 		rm -f *.time unifiedi.report
 		cd ..
-		exit 0 #########################################################################################################################################################################################3
+
+		#cat stage2.fails
+
+		#keep only class names
+
+		failed_set=$(awk -F# '{print $1}' stage2.fails | awk '!seen[$0]++' | tr '\n' ',' | sed "s/ //g" | sed "s/,,/,/g" | sed 's/\(.*\),/\1 /')
 	
 		#mvn -B -o -fn -DforkCount=1C -DreuseForks=false -Dtest=${failed_set} $MAVEN_SKIPS test &>> xPASTE_PROJ/toti.time #stage 3 (par)
 		mvn -B -o -fn -Dtest=${failed_set} $MAVEN_SKIPS test &>> xPASTE_PROJ/toti.time #stage 3 (seq)
@@ -491,19 +496,15 @@ if ((${tot} > 0)); then
 		done
 
 		fp=$((${xflakes}-${flakes1})); # count of flaky tests that passed when isolated and executed sequentially (after parallel execution).
-		s2_f=$xflakes
+		s2_f=${temp}
 		s3_f=$flakes1
 		if(($ytime == 0)); then
 			s3_t=$xtime	
 		fi
 
-		s2_r=${temp} # corrected count
 		s1_f=${s2_r} # corrected count
 
-		s3_r=${temp2} # corrected count
-		s2_f=${s3_r} # corrected count
-
-		if(($flakes1 == 0)); then
+		#if(($flakes1 == 0)); then
 			printf "\n#Tests run (stage 1 in ${s1_t} secs.): ${s1_r}" | tee -a unified.report
 			printf "\n#Failed tests (stage 1): ${s1_f}" | tee -a unified.report
 			printf "\n#Tests run (stage 2 in ${s2_t} secs.): ${s2_r}" | tee -a unified.report
@@ -513,7 +514,7 @@ if ((${tot} > 0)); then
 			#printf "\nPar time (stage 2): $xtime secs." | tee -a unified.report
 			#printf "\nPar time (stage 3): $ytime secs." | tee -a unified.report
 			printf "\nEnd-to-end time: $ttime secs.\n\n" | tee -a unified.report
-		fi
+		#fi
 	fi
 else
 	time1=$(grep --text "\[INFO\] Total time:" tot.time | awk '{print $(NF-1)}')
