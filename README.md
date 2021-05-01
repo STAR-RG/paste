@@ -1,5 +1,5 @@
 # PASTE
-Artifacts for the PASTE project on test-parallelization.
+Artefacts for the PASTE project on test-parallelization.
 
 PASTE implementation
 --------------------
