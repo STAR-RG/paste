@@ -20,5 +20,5 @@ do
 	mkdir results/$i
 	
 	cp -r projects/$i/PASTE_PROJlogs results/$i # individual execution logs of PASTE, in detail.
-	cp -r projects/$i/PASTE_PROJlogs/testSuiteSize.info results/$i # full test-suite size (#inputs to stage 1 of PASTE)
+	cp -r projects/$i/testSuiteSize.info results/$i # full test-suite size (#inputs to stage 1 of PASTE)
 done
