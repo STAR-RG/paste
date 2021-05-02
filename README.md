@@ -36,10 +36,10 @@ Artefacts tested on
 Processor: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz<br>
 CPUs: 8<br>
 RAM: 8 GB<br>
-Hard-disk: 512 GB SSD
-OS: Ubuntu 20.04.2 LTS
-Kernel: 5.4.0-42-generic
-Java: OpenJDK 1.8.0_282
+Hard-disk: 512 GB SSD<br>
+OS: Ubuntu 20.04.2 LTS<br>
+Kernel: 5.4.0-42-generic<br>
+Java: OpenJDK 1.8.0_282<br>
 Maven: 3.6.3<br>
 GNU bash: 5.0.17(1)-release
 
