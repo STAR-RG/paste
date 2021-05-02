@@ -5,8 +5,8 @@ PASTE implementation
 --------------------
 All scripts in the directort [src].
 
-Projects included:
-------------------
+Projects included
+-----------------
 accumulo-76247b1739dd3042cb2d959a7a99f0cf1bcb1324<br>
 avro-5bd7cfe0bf742d0482bf6f54b4541b4d22cc87d9<br>
 Chronicle-Queue-8754ad3c6320cf79816b769e56f1a27a6b5ae753<br>
@@ -31,3 +31,18 @@ Directory layout after the replication is completed
 ---------------------------------------------------
 Directory [results] contains detailed (project-wise) execution logs of PASTE.
 
+Artefacts tested on
+-------------------
+Processor: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz<br>
+CPUs: 8<br>
+RAM: 8 GB<br>
+Hard-disk: 512 GB SSD
+OS: Ubuntu 20.04.2 LTS
+Kernel: 5.4.0-42-generic
+Java: OpenJDK 1.8.0_282
+Maven: 3.6.3<br>
+GNU bash: 5.0.17(1)-release
+
+Contact us
+----------
+paste.project.parallel@gmail.com
