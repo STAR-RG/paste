@@ -24,8 +24,8 @@ wicket-34f78c853500356135918ef16356bd669bb96422<br>
 Steps to replicate results
 --------------------------
 ```bash get_projects.sh``` # downloads the above projects (and customized pom.xml) used in the experiments.<br>
-```bash clean.sh``` # clean up<br>
-```bash start.sh``` # replication starts here<br>
+```bash clean.sh``` # clean up.<br>
+```bash start.sh``` # replication starts here.<br>
 
 Directory layout after the replication is completed
 ---------------------------------------------------
