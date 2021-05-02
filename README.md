@@ -21,6 +21,13 @@ rocketmq-3ae251751586b940b7467284966ec4fe93f86be1<br>
 Strata-050745da318a85033b243f4b45f98f2486c7c02a<br>
 wicket-34f78c853500356135918ef16356bd669bb96422<br>
 
+Dependencies
+-------------------------
+1. Java 8
+2. Maven 3.6.3
+3. Python3
+4. Python3 gdown (if you do not have it will be installed automatically)
+
 Steps to replicate results
 --------------------------
 ```bash get_projects.sh``` # downloads the above projects (and customized pom.xml) used in the experiments.<br>
