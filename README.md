@@ -40,7 +40,7 @@ Directory [results] contains detailed (project-wise) execution logs of PASTE.
 
 Artefacts tested on
 -------------------
-Processor: Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz<br>
+Processor: Tenth Generation Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz<br>
 CPUs: 8<br>
 RAM: 8 GB<br>
 Hard-disk: 512 GB SSD<br>
