@@ -3,23 +3,39 @@ Artefacts for the PASTE project on test-parallelization.
 
 PASTE implementation
 --------------------
-All scripts in the directort [src].
+All scripts in the directort `src`.
 
 Projects included
 -----------------
-accumulo-76247b1739dd3042cb2d959a7a99f0cf1bcb1324<br>
-avro-5bd7cfe0bf742d0482bf6f54b4541b4d22cc87d9<br>
-Chronicle-Queue-8754ad3c6320cf79816b769e56f1a27a6b5ae753<br>
-commons-collections-3aae82cbaaaf539bf3f54cd6a0679efc123f2c8e<br>
-commons-io-c1ee77787f74ce9b660bf377462059d084458fef<br>
-datasketches-java-dab95426fe4d3c568850750852f5e57cf2aa146d<br>
-httpcomponents-client-bde58d6addd4d693aa5aedfafc1406e9952ff22b<br>
-maven-276c6a8dc445cbaffb2bc2a6344f54abeb9b4311<br>
-mina-daf2a33fed5fccb096ce75ab9263ec9a48561942<br>
-ratis-0c9913f602a49231621323bc903d91d5bbb06cb7<br>
-rocketmq-3ae251751586b940b7467284966ec4fe93f86be1<br>
-Strata-050745da318a85033b243f4b45f98f2486c7c02a<br>
-wicket-34f78c853500356135918ef16356bd669bb96422<br>
+| \#  | Name                                            | \# Stars | \# Tests   | SHA     |
+| --: | :---------------------------------------------- | -------: | ---------: | ------: |
+| 1   | [accumulo](https://github.com/apache/accumulo)              | 861      | 514        | 76247b1 |
+| 2   | [atlas](https://github.com/apache/atlas)                 | 839      | 1422       | acb9880 |
+| 3   | [avro](https://github.com/apache/avro/)                 | 1807     | 10446      | 5bd7cfe |
+| 4   | [biojava](https://github.com/biojava/biojava)              | 438      | 811        | 4d1cf58 |
+| 5   | [cayenne](https://github.com/apache/cayenne)               | 250      | 2084       | 54cb1f9 |
+| 6   | [Chronicle-Queue](https://github.com/OpenHFT/Chronicle-Queue)      | 2291     | 328        | 8754ad3 |
+| 7   | [commons-collections](https://github.com/apache/commons-collections)   | 475      | 16923      | 3aae82c |
+| 8   | [commons-io](https://github.com/apache/commons-io/)           | 767      | 1840       | c1ee777 |
+| 9   | [datasketches-java](https://github.com/apache/datasketches-java/)    | 706      | 1490       | dab9542 |
+| 10  | [dubbo](https://github.com/apache/dubbo)                 | 34954    | 3519       | b5c81d8 |
+| 11  | [httpcomponents-client](https://github.com/apache/httpcomponents-client) | 1040     | 1865       | bde58d6 |
+| 12  | [iotdb](https://github.com/apache/iotdb)                 | 1255     | 422        | 6f7eac8 |
+| 13  | [kylin](https://github.com/apache/kylin/)                | 3015     | 1057       | d6073d2 |
+| 14  | [maven](https://github.com/apache/maven/)                | 2490     | 1053       | 276c6a8 |
+| 15  | [mina](https://github.com/apache/mina)                  | 776      | 371        | daf2a33 |
+| 16  | [mina-sshd](https://github.com/apache/mina-sshd)             | 394      | 1790       | a0bbdf9 |
+| 17  | [opennlp](https://github.com/apache/opennlp)               | 1024     | 791        | 7286f9c |
+| 18  | [pdfbox](https://github.com/apache/pdfbox)                | 1403     | 1849       | 9daeaf6 |
+| 19  | [ranger](https://github.com/apache/ranger)                | 489      | 552        | 58b51a3 |
+| 20  | [ratis](https://github.com/apache/ratis/)                | 460      | 444        | 0c9913f |
+| 21  | [rocketmq](https://github.com/apache/rocketmq/)             | 13740    | 372        | 3ae2517 |
+| 22  | [shiro](https://github.com/apache/shiro)                 | 3419     | 856        | a85dfcd |
+| 23  | [Strata](https://github.com/OpenGamma/Strata/)            | 603      | 16277      | 050745d |
+| 24  | [soul](https://github.com/dromara/soul/)                | 3666     | 1081       | a99c9fc |
+| 25  | [wicket](https://github.com/apache/wicket)                | 551      | 2699       | 34f78c8 |
+|     |                                                 | -        | **70856**  | -       |
+
 
 Dependencies
 -------------------------
@@ -30,13 +46,15 @@ Dependencies
 
 Steps to replicate results
 --------------------------
-```bash get_projects.sh``` # downloads the above projects (and customized pom.xml) used in the experiments.<br>
-```bash clean.sh``` # clean up.<br>
-```bash start.sh``` # replication starts here.<br>
-
+```bash
+cd src
+bash get_projects.sh # downloads the above projects (and customized pom.xml) used in the experiments.<br>
+bash clean.sh        # clean up.<br>
+bash start.sh        # replication starts here.<br>
+```
 Directory layout after the replication is completed
 ---------------------------------------------------
-Directory [results] contains detailed (project-wise) execution logs of PASTE.
+Directory `results` contains detailed (project-wise) execution logs of PASTE.
 
 Artefacts tested on
 -------------------
