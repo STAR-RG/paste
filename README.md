@@ -67,10 +67,6 @@ Java: OpenJDK 1.8.0_282<br>
 Maven: 3.6.3<br>
 GNU bash: 5.0.17(1)-release
 
-Known issues
-------------
-Installation (build) of a project may fail on a different system if the `~/.m2` directory (hidden) does not have the required dependencies (libraries) already present while the `mvn` build system explicitly assumes their presence. Currently, [cayenne](https://github.com/apache/cayenne) has installation issues. We are working on the fix and would resolve the issue at the earliest. 
-
 Contact us
 ----------
 paste.project.parallel@gmail.com
