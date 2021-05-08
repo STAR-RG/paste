@@ -48,9 +48,8 @@ Steps to replicate results
 --------------------------
 ```bash
 cd src
-bash get_projects.sh # downloads the above projects (and customized pom.xml) used in the experiments.<br>
-bash clean.sh        # clean up.<br>
-bash start.sh        # replication starts here.<br>
+bash get_projects.sh # downloads the above projects (and customized pom.xml) used in the experiments.
+bash start.sh        # replication starts here.
 ```
 Directory layout after the replication is completed
 ---------------------------------------------------
@@ -67,6 +66,11 @@ Kernel: 5.4.0-42-generic<br>
 Java: OpenJDK 1.8.0_282<br>
 Maven: 3.6.3<br>
 GNU bash: 5.0.17(1)-release
+
+Known issues
+------------
+Installation (build) of a project may fail on a different system if the `~/.m2` directory (hidden) does not have the required dependencies (libraries)<br>
+already present while the `mvn` build system explicitly assumes their presence. Currently, [cayenne](https://github.com/apache/cayenne) has installation issues.
 
 Contact us
 ----------
