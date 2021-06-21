@@ -1,11 +1,11 @@
 # PASTE (PArallel-Sequential Test Execution)
-Shouvick Mondal, Denini Silva, and Marcelo d'Amorim
+[Shouvick Mondal](https://sites.google.com/view/shouvick), [Denini Silva](https://denini08.github.io/), and [Marcelo d'Amorim](https://www.cin.ufpe.br/~damorim).
 
-ICSME 2021 artefacts for the PASTE project on test-parallelization.
+[ICSME 2021](https://icsme2021.github.io/) artefacts for the PASTE project on test-parallelization.
 
 PASTE implementation
 --------------------
-All scripts in the directort `src`.
+All scripts are located in the directory `src`.
 
 Projects included
 -----------------
