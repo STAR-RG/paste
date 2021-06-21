@@ -69,4 +69,4 @@ GNU bash: 5.0.17(1)-release
 
 Contact us
 ----------
-paste.project.parallel@gmail.com
+shouvick.mondal.cemk@gmail.com
