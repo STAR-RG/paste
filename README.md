@@ -1,5 +1,7 @@
-# PASTE
-Artefacts for the PASTE project on test-parallelization.
+# PASTE (PArallel-Sequential Test Execution)
+Shouvick Mondal, Denini Silva, and Marcelo d'Amorim
+
+ICSME 2021 artefacts for the PASTE project on test-parallelization.
 
 PASTE implementation
 --------------------
