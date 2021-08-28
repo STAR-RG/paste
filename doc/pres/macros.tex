@@ -1,0 +1,89 @@
+\newcommand{\ie}{i.e.}
+\newcommand{\eg}{e.g.}
+\newcommand{\aka}{a.k.a.}
+\newcommand{\etal}{et al.}  % and colleagues
+\newcommand{\CodeIn}[1]{{\small{\texttt{#1}}}}
+\newcommand{\CodeInTab}[1]{{\scriptsize{\texttt{#1}}}}
+\newcommand{\FancyIn}[1]{{\small{\textsc{#1}}}}
+\newcommand{\MyComment}[1]{}
+% common names
+\newcommand{\reveng}{Reverse Engineering}
+
+%% review original
+\newcommand{\Fix}[1]{{\textbf{[[}\color{magenta}#1}\textbf{]]}}
+\newcommand{\Mar}[1]{{\textbf{[[Marcelo:~}\color{red}#1}\textbf{]]}}
+\newcommand{\SM}[1]{{\textbf{[[Shouvick:~}\color{blue}#1}\textbf{]]}}
+\newcommand{\Den}[1]{[\textbf{Denini}:~{\color{brown} #1}]}
+
+% \newcommand{\Fix}[1]{}
+% \newcommand{\Mar}[1]{}
+% \newcommand{\SM}[1]{}
+% \newcommand{\Den}[1]{}
+
+%% numbers
+\newcommand{\configClasses}{\CodeIn{classes}}
+\newcommand{\configMethods}{\CodeIn{methods}}
+\newcommand{\configClassesAndMethods}{\CodeIn{classesMethods}}
+\newcommand{\configClassesTab}{\CodeInTab{classes}}
+\newcommand{\configMethodsTab}{\CodeInTab{methods}}
+\newcommand{\configClassesAndMethodsTab}{\CodeInTab{classesMethods}}
+
+\newcommand{\tname}{\textsc{PASTE}}
+
+\def\denseitems{
+   \itemsep1pt plus1pt minus1pt
+   \parsep0pt plus0pt
+   \parskip0pt\topsep0pt}
+
+%% numbers and names
+\newcommand{\OurURL}{\url{https://github.com/STAR-RG/paste}}
+\newcommand{\NumProjects}{25}
+\newcommand{\NumProjectsSpeedups}{13}
+\newcommand{\FrequencySpeedups}{52} % NumProjectsSpeedups/NumProjects (13/25)
+\newcommand{\SpeedupClassesAvg}{1.47}
+\newcommand{\SpeedupClassesMedian}{1.59}
+\newcommand{\SpeedupClassesMax}{2.28}
+\newcommand{\SpeedupClassesMin}{0.93}
+\newcommand{\NumRepeatsExperiment}{5}
+\newcommand{\NumRepeatsManifest}{10}
+\newcommand{\NumProjectsParExecFails}{11}
+\newcommand{\NumProjectsParExecFailsPercentage}{44}
+\newcommand{\NumStars}{200}
+\newcommand{\NumTests}{300}
+\newcommand{\NumFailsAtlasStageOneMethods}{147.2}
+\newcommand{\NumFailsAtlasStageOneMethodsNoFraction}{141.2}
+\newcommand{\NumFailsAtlasStageTwoMethods}{6}
+\newcommand{\NumFailsClassesTotalStageOne}{402.6}
+\newcommand{\NumFailsClassesAndMethodsTotalStageOne}{731.2}
+\newcommand{\NumFailsMethodsTotalStageOne}{879.6}
+\newcommand{\NumTestsClassificationSearchProcessorTest}{10}
+\newcommand{\NumTestsMillionsPerDayGoogle}{150}
+\newcommand{\EpochDuration}{45}
+\newcommand{\NumDigitsSHA}{7}
+\newcommand{\Processor}{Intel Core i5-1035G1 CPU @ 1.00GHz (base frequency)}
+\newcommand{\NumCPUs}{8}
+\newcommand{\NumCores}{4}
+\newcommand{\RAMCapacity}{8}
+\newcommand{\HardDiskCapacity}{512}
+\newcommand{\KernelVersion}{5.4.0-42-generic}
+\newcommand{\JavaVersion}{1.8.0\_282}
+\newcommand{\BashVersion}{5.0.17}
+\newcommand{\MavenVersion}{3.6.3}
+\newcommand{\NumDepsChronicleQueue}{251}
+\newcommand{\NumTestsChronicleQueue}{338}
+\newcommand{\NumDepsCommonsCcollection}{2}
+\newcommand{\NumTestsCommonsCcollection}{16,923}
+\newcommand{\ForkscriptSurefirePatchedVersion}{\CodeIn{maven-surefire-plugin v3.0.0-M5}}
+%% names
+
+
+%% Configuration modes from ASE
+\newcommand{\Seq}{\CodeIn{sequential}}
+\newcommand{\SeqClassParMeth}{\configClasses}
+\newcommand{\ParClassSeqMeth}{\configMethods}
+\newcommand{\ParClassParMeth}{\configClassesAndMethods}
+\newcommand{\Fork}{\Fix{?}}
+\newcommand{\ForkSeq}{\Fix{?}}
+\newcommand{\ForkParMeth}{\Fix{?}}
+\newcommand{\pomf}{\CodeIn{pom.xml}}
+

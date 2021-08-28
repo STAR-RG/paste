@@ -1,0 +1,121 @@
+\mode<presentation>
+{
+	\usetheme{Warsaw}
+	\usepackage{graphicx}
+	% or ...	
+	
+	\setbeamercovered{transparent,invisible}
+	\setbeamertemplate{navigation symbols}{}
+	% or whatever (possibly just delete it)
+}
+
+\usepackage[english]{babel}
+% or whatever
+\usepackage{graphicx,subfigure}
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{amsthm}
+\newtheorem*{mylim*}{Limitations}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	anchorcolor=blue,
+	filecolor=blue,      
+	citecolor=blue,
+	urlcolor=blue
+}
+\usepackage{url,graphicx,subfigure}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{pifont}
+\usepackage{cite}
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+\usepackage{graphicx}
+\usepackage[compatibility=false]{caption}% http://ctan.org/pkg/caption
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{matrix,fit,shapes,calc,positioning,shadows,arrows,shapes,backgrounds,decorations.markings,fadings}
+\usepgfplotslibrary{statistics}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage[skins]{tcolorbox}
+\usepackage[linesnumbered,lined,boxed,ruled,vlined]{algorithm2e}
+\usepackage[labelformat=empty]{caption}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+\usepackage{amsmath,amssymb,amsfonts}
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\definecolor{comments}{rgb}{0.25,0.5,0.35}
+
+\definecolor{brass}{rgb}{0.71, 0.65, 0.26}
+
+\definecolor{SM}{rgb}{0.5,0,1}
+\newcommand {\rsm} {\color{SM}}
+
+\newcommand{\disp}{\insertframenumber/\inserttotalframenumber}
+
+\newcommand{\backupbegin}{
+	\newcounter{finalframe}
+	\setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+	\setcounter{framenumber}{\value{finalframe}}
+}
+
+\definecolor{antiquefuchsia}{rgb}{0.7, 0.1, 0.85}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{brass}{rgb}{0.71, 0.65, 0.26}
+\definecolor{indiagreen}{rgb}{0.07, 0.53, 0.03}
+\definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+\definecolor{navyblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{darkred}{rgb}{0.55, 0.0, 0.0}
+
+\newcommand{\REM}[1]{}
+\newcommand{\todo}[1]{\textrm{\color{blue} #1}}
+\newcommand{\sm}[1]{\textrm{\color{red} #1}}
+\newcommand{\colosseum}{\textsf{Colosseum}\xspace}
+\newcommand{\hansie}{\textsf{Hansie}\xspace}
+\newcommand{\mahtab}{\textsf{Mahtab}\xspace}
+\newcommand{\overallspeedup}{\todo{XXX}}
+
+\resetcounteronoverlays{algocf}
+
+\newcommand{\smr}[1]{\textrm{\color{black} #1}}
+\newcommand{\sms}[1]{\textrm{\color{black} #1}}
+\renewcommand{\ttdefault}{pcr}
+\lstset{
+	language=Java,
+	escapechar=|,
+	numbers=left,
+	stepnumber=1,
+	numbersep=5pt,
+	numberstyle=\tiny\color{gray},
+	backgroundcolor=\color{white},
+	stringstyle=\fontsize{7.5}{7.5}\selectfont\ttfamily,
+	keywordstyle=\ttfamily,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	captionpos=b,
+	breaklines=true,
+	breakatwhitespace=true,
+	title=\lstname,
+	basicstyle=\fontsize{7.5}{7.5}\selectfont\ttfamily,
+	commentstyle=\color{red},
+}
