@@ -1,0 +1,381 @@
+\documentclass{beamer}
+
+\input{packages}
+\input{macros}
+
+\title[\color{white}ICSME 2021 Research Track Presentation.\hspace{14mm}\disp] % (optional, use only with long paper titles)
+{Soundy Automated Parallelization\\of Test Execution}
+
+\author[Shouvick Mondal \textit{et al}.] % (optional, use only with lots of authors)
+{\underline{Shouvick Mondal}, Denini Silva, Marcelo d'Amorim\\\vspace{2mm}
+{\scriptsize IIT Madras (India), UFPE (Brazil), UFPE (Brazil)}
+\\\vspace{2mm}
+\includegraphics[width=0.13\textwidth]{images/shouvick2.jpg}~~~\includegraphics[width=0.15\textwidth]{images/denini.jpg}~~~\includegraphics[width=0.13\textwidth]{images/marcelo.jpg}}
+\date{ICSME 2021 (Virtual Event)\\{\scriptsize September 27 -- October 1}} % (optional, should be abbreviation of conference name)
+
+%======================================================================================================
+
+\begin{document}
+
+\begingroup
+\renewcommand{\disp}{}
+\begin{frame}
+	\titlepage
+\end{frame}
+\endgroup
+
+\addtocounter{framenumber}{-1}
+
+\begin{frame}{Context: software evolution and regression testing}
+	
+{\rsm Consider manipulating a function}:\\
+$\{f(x)=2+x\}$ $\rightarrow$ $\{f'(x)=2*x\}$.\\
+\vspace{0.3cm}
+\pause
+Inputs (test-cases): {\rsm 2}, {\rsm 4}\\
+\textit{Expected} outputs: {\color{indiagreen}4}, {\color{indiagreen}6}\\\pause
+\textit{Observed} outputs: {\color{indiagreen}4}, {\color{red}8}\\
+\vspace{0.3cm}\pause
+{\color{indiagreen}Functionality}: $f({\rsm 2})=f'({\rsm 2})=\color{indiagreen}4$ is still intact.\\
+\vspace{0.3cm}\pause
+\vspace{-4mm}
+{\color{red} Failure} (functional discrepancy) revealed: $f({\rsm 4})\neq f'({\rsm 4})$.\\
+\vspace{0.3cm}\pause
+{\textit{Relation with software testing}: RetestAll ({\color{red}\textit{expensive}!})}\\
+Industrial example: RetestAll took seven weeks to complete!\onslide<6->\footnotemark\\\pause
+\vfill
+\textit{Sophisticated solutions}
+\begin{itemize}
+	\item{Regression test {\rsm selection} (RTS).}
+	\item{Regression test {\rsm prioritization} (RTP).}
+	\item{Test-suite {\rsm reduction} (TSR).}\pause
+	\item{\textbf{\color{blue}\textit{Test-execution parallelization}} (or Test parallelization).}
+\end{itemize}
+\only<6->{\footnotetext[1]{\fontsize{5}{5}\selectfont\textbf{Source}: S. Elbaum et al., \textit{Prioritizing Test Cases for Regression Testing}, ISSTA 2000.}}
+\end{frame}
+
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=1]{images/intro.pdf}
+	\vfill
+	{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
+	\vfill
+	\vfill
+	{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
+\end{frame}
+
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=2]{images/intro.pdf}
+\vfill
+{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
+\vfill
+\vfill
+{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
+\end{frame}
+
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=3]{images/intro.pdf}
+\vfill
+In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.
+\vfill
+\vfill
+\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.
+\end{frame}
+
+\begin{frame}{Some recent approaches towards test parallelization}
+	\begin{center}
+		\fontsize{7.5}{7.5}
+		{	
+			\selectfont
+			\setlength{\tabcolsep}{0.9mm}
+			\centering
+			\begin{tabular}{l|l|r|l}
+				\hline
+				{\textbf{Work--venue}} & {\textbf{Languages used}} & {\textbf{Speedup}} & {\textbf{Machine type}}\\
+				\hline
+				{} & {} & {} & {}\\
+				{{\rsm ElectricTest}--FSE 2015} & {\rsm Java} & {Avg. $16.00\times$} & {Amazon EC2}\\
+				{} & {} & {} & {}\\
+				\hline
+				{} & {} & {} & {}\\
+				%{{\rsm GPU execution}--ASE 2014} & {CUDA and {\rsm C (subset)}} & {Max. $27.00\times$} & {GPU}\\
+				{{\rsm ParTeCL} (GPU)--ISSTA 2017} & {OpenCL and {\rsm C (subset)}} & {Avg. $16.00\times$} & {GPU}\\
+				{} & {} & {} & {}\\
+				\hline
+				{} & {} & {} & {}\\
+				{Candido et al.--ASE 2017} & {\rsm Java} & {Avg. $3.53\times$} & {8 cores @ 3.60 GHz}\\
+				%{} & {Avg. $1.90\times$} & {80 cores @ 2.20 GHz}\\
+				{({\rsm multi-core})} & {} & {Avg. $4.20\times$} & {80 cores @ 2.20 GHz}\\
+				{} & {} & {} & {}\\
+				\hline
+				{} & {} & {} & {}\\
+				{\mahtab--JSS 2019} & {C++, LLVM, and {\rsm C}} & {Avg. $5.17\times$} & {40 cores @ 2.40 GHz}\\
+				%{} & {Avg. $1.90\times$} & {80 cores @ 2.20 GHz}\\
+				{({\rsm multi-core})} & {} & {G.M. $4.72\times$} & {40 cores @ 2.40 GHz}\\
+				{} & {} & {} & {}\\
+				\hline
+			\end{tabular}
+		}	
+	\end{center}
+	\centering
+	{\fontsize{9}{9}\selectfont We \underline{\textit{may get}} a {\color{indiagreen}\textbf{good speedup}}.}
+\end{frame}
+
+\begin{frame}{Issues in test parallelization}
+\begin{itemize}
+	\item{{\color{red}\textbf{Data-races}}.}
+	\item{{\color{red}\textbf{Test dependencies}}.}
+	\item{Test flakiness.}
+	\item{State pollution.}\pause
+	\item{Test timeouts.}
+	\item{Test monopolization}.\pause
+	\item{Network connection.}
+	\item{Disk + File I/O.}\pause
+\end{itemize}
+\vfill
+{We \underline{\textit{may get}} a {\color{indiagreen}\textbf{good speedup}} but the {\color{red}\textbf{downside is reliability}}.}
+\end{frame}
+
+\begin{frame}[fragile]{Example: test order dependency}
+\vspace{-13mm}
+\begin{center}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{c}
+\begin{lstlisting}[caption=Test order dependency on the project \texttt{\textbf{Atlas}} (commit\# acb9880).,captionpos=b,label={lst:rq3-example},keywords={totalClassifiedEntities,searchByALLTag,searchByALLTagAndIndexSysFiltersToTestLimit,params,graph},escapechar=|,tabsize=1]
+public class ClassificationSearchProcessorTest ... {
+	private AtlasGraph |\textbf{graph}|; |\label{line:graph-decl}|
+	private int |\textbf{totalClassifiedEntities}| = 0; ...|\label{line:totClass-decl}\pause|
+	
+	@Test
+	public void |\textbf{searchByALLTag}|() throws AtlasBaseException {
+		...
+		|\textbf{params}|.setLimit(20); |\label{line:params-limit}|
+		SearchContext context = 
+		new SearchContext(|\textbf{params}|, |\textbf{graph}|, ...);|\label{line:params-context}|
+		ClassificationSearchProcessor processor = new ClassificationSearchProcessor(context);|\label{line:params-processor}|
+		List<AtlasVertex> vertices = processor.execute(); |\label{line:vertices-earchByALLTag}|
+		Assert.assertTrue(CollectionUtils.isNotEmpty(vertices));
+		|\textbf{totalClassifiedEntities}| = vertices.size(); |\label{line:settotalClassifiedEntities}|
+	} ...|\pause|
+	
+	@Test
+	public void |\textbf{searchByALLTagAndIndexSysFiltersToTestLimit}|() throws AtlasBaseException { 
+		...
+		|\textbf{params}|.setLimit(|\textbf{totalClassifiedEntities}| - 2);|\label{line:bad-value}| |\label{line:gettotalClassifiedEntities}|
+		SearchContext context = 
+		new SearchContext(|\textbf{params}|, |\textbf{graph}|, ...);
+		ClassificationSearchProcessor processor = new ClassificationSearchProcessor(context);
+		List<AtlasVertex> vertices = processor.execute(); |\label{line:error-execute}|
+		Assert.assertTrue(CollectionUtils.isNotEmpty(vertices)); |\label{line:error-line}|
+	}...}
+\end{lstlisting}
+		\end{tabular}
+		\vspace{-7ex}
+	\end{table}
+\end{center}
+\end{frame}
+
+\begin{frame}{Test dependency detection can be costly!}
+State-of-the-art approaches in test dependency detection
+\begin{itemize}\pause
+	\item{ElectricTest--FSE 2015}
+	\item{PRADET--ICST 2018}
+	\item{TEDD--FSE 2019}
+\end{itemize}
+\fbox{\rsm \textbf{PRADET}}
+\begin{itemize}
+	\fontsize{11}{11}\selectfont
+	\item[]{\underline{\textbf{Step 1} (costs $x$)}: {\rsm Sequential execution} to record original test ordering.}\pause
+	\item[]{\underline{\textbf{Step 2} (costs $y$)}: {\rsm Dynamic data-flow analysis} collect data dependencies.}\pause
+	\item[]{\underline{\textbf{Step 3} (costs $z$)}: {\rsm Iterative refinement} to keep problematic dependencies.}\pause
+\end{itemize}
+\begin{center}
+	\begin{tcolorbox}
+		The cost of running {\rsm PRADET} is {\color{red} \textbf{substantially higher than the cost of running tests sequentially}}\\($y+z>{x}$). It is therefore \textit{\textbf{not practical} to use PRADET} to support test parallelization!
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+
+\begingroup
+\renewcommand{\disp}{}
+\begin{frame}
+	\begin{center}
+		Our approach: \textbf{\tname}\\
+		{\textbf{\rsm PA}rallel-\textbf{\rsm S}equential \textbf{\rsm T}est \textbf{\rsm E}xecution}
+	\end{center}
+\end{frame}
+\endgroup
+\addtocounter{framenumber}{-1}
+
+\begin{frame}{Our approach: \textbf{\tname}}
+\begin{center}
+\begin{tcolorbox}
+\textbf{Parallelize} execution of test suites through:
+\begin{itemize}
+	\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test cases} (\underline{\textit{to avoid {\color{red}\textbf{data races}}}}).}
+	\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test classes} (\underline{\textit{to avoid {\color{red}\textbf{broken test dependencies}}}}).}
+\end{itemize}
+\end{tcolorbox}
+\end{center}
+\begin{itemize}
+\item{\textbf{\tname}~({\rsm \textbf{PArallel-Sequential Test Execution}}), an approach to \textit{\rsm \underline{automate}} parallel execution of tests.}\pause
+\item{\textbf{\tname} builds on the observation that {\rsm \textit{\underline{broken test dependencies}}} that are manifested in parallel runs {\rsm \textit{\underline{involve test cases from the same test class}}}.}\pause
+\item{\textbf{\tname} leverages that observation to \textit{\rsm \underline{reinstate those dependencies by running}} the tests from the same class in the same order.}\pause
+\item{\textbf{\tname} is organized as a pipeline of \textit{\underline{three stages}}.}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}{\textbf{\tname{}}: the three-staged pipeline of test execution}
+	\centering 
+	\includegraphics[width=0.8\linewidth,page=1]{images/soundy.pdf}
+\end{frame}
+
+\begin{frame}{Stage 1: parallel execution}
+	\centering 
+	\includegraphics[width=0.65\linewidth,page=2]{images/soundy.pdf}
+\end{frame}
+
+\begin{frame}{Stage 2: sequential re-execution of failed test cases}
+	\centering 
+	\includegraphics[width=0.65\linewidth,page=3]{images/soundy.pdf}
+\end{frame}
+
+\begin{frame}{Stage 3: sequential re-execution of failed test classes}
+	\centering 
+	\includegraphics[width=0.65\linewidth,page=4]{images/soundy.pdf}
+\end{frame}
+
+\begingroup
+\renewcommand{\disp}{}
+\begin{frame}
+	\begin{center}
+		Experimental Setup
+	\end{center}
+\end{frame}
+\endgroup
+\addtocounter{framenumber}{-1}
+
+\begin{frame}{Experimental Setup}
+\begin{itemize}
+	\item{\textbf{\underline{Hardware}}: $10^{\textnormal{th}}$ generation \Processor, \textbf{\rsm \NumCPUs\ CPUs} (\textbf{\rsm \NumCores\ cores}, with \textbf{\rsm 2 threads per core}), \RAMCapacity\ GB RAM, \HardDiskCapacity\ GB SSD.}\pause
+	\item{\textbf{\underline{Software}}: \textbf{\rsm {Linux}} kernel version \KernelVersion, and OpenJDK \JavaVersion{} for \textbf{\rsm Java}. We implemented \tname\ on top of GNU \textbf{\rsm {Bash}} \BashVersion, and \textbf{\rsm {Maven}} \MavenVersion.}\pause
+	\item{\textbf{\underline{Subjects}}: \textbf{\rsm \NumProjects\ Java projects} that use \textbf{\rsm {Maven}} and have at least \NumStars\ stars and \NumTests\ tests.}\pause
+	\item{\textbf{\underline{No failures}}: Reran each test suite \NumRepeatsManifest\ times to \textbf{\rsm identify} and \textbf{\rsm eliminate tests failing} due to \textbf{\rsm non-determinism}.}\pause
+	\item{\textbf{\underline{Parallel configuration}}: parameters in \textbf{\rsm Maven} and \textbf{\rsm JUnit}.}
+\end{itemize}
+\end{frame}
+
+\begingroup
+\renewcommand{\disp}{}
+\begin{frame}
+	\begin{center}
+		Research Questions
+	\end{center}
+\end{frame}
+\endgroup
+\addtocounter{framenumber}{-1}
+
+\begin{frame}{RQ1 (feasibility \#1)}
+\textbf{\textit{Is it feasible to use parallelization options provided by the build system ``out of the box'' to run test suites?}}\pause
+\begin{center}
+	\begin{tcolorbox}
+		{\color{red} \textbf{In \NumProjectsParExecFailsPercentage\% of the projects we analyzed, no parallel configurations enabled a clean execution}}, \ie{} an execution without test failures. This result shows that searching for the parallel configuration that makes \textbf{\color{red}test outputs consistent with those of a sequential execution is infeasible in general}.
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+
+\begin{frame}{RQ2 (feasibility \#2)}
+\textbf{\textit{Is it practical to use a test dependency analyzer to partition test sets as to enable sound parallel execution?}}\pause
+\begin{center}
+	\begin{tcolorbox}
+		The \textbf{\color{red}cost of running PRADET}, which is the state-of-the-art tool to compute test dependencies, is \textbf{\color{red}substantially higher than the cost of running tests sequentially}. It is \textbf{\color{red}therefore not practical to use PRADET} to support test parallelization.
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+
+\begin{frame}{RQ3 (effectiveness \#1)}
+\textbf{\textit{How reliable is \tname?}}
+\begin{center}\pause
+	\begin{tcolorbox}
+		The strategies adopted by \tname\ of executing test cases and test classes sequentially are \textbf{\color{red}effective to circumvent the test flakiness provoked by test parallelization}. Considering all projects and configurations, there were \textbf{\color{red}no cases of provoked failure that ``survived'' the third stage} of \tname.
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+
+\begin{frame}{RQ4 (effectiveness \#2)}
+\textbf{\textit{What are the speedups obtained with \tname?}}
+\begin{center}\pause
+	\begin{tcolorbox}
+		Results indicate that \textbf{\color{red}not all projects can benefit from test parallelization}. Considering the \textbf{\color{red}projects we selected} and our current implementation, we observed \textbf{\color{red}speedups in \FrequencySpeedups\% of the projects}. The {\color{red}\textbf{configuration} \texttt{\textbf{classes}}} yielded higher efficiency overall, with \textbf{\color{red}average and median speedups of \SpeedupClassesAvg{}x and \SpeedupClassesMedian{}x, respectively}.
+	\end{tcolorbox}
+\end{center}
+\end{frame}
+
+\begin{frame}{RQ4 (effectiveness \#2)}
+\vspace{-1.2cm}
+\begin{figure}
+	\centering
+\includegraphics[width=\linewidth]{images/time.pdf}
+\vspace{-1.4cm}
+	\caption*{Distribution of \tname{} running times (seconds) for (Sequential) and each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
+\end{figure}
+\vspace{-1.25cm}\pause
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/speedup.pdf}
+	\vspace{-1.6cm}
+	\caption*{Distribution of speedups for each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Conclusions}
+\begin{itemize}
+	\item{\footnotesize We discussed {\rsm \textbf{\tname{}}}, a lightweight approach to {\rsm \underline{parallelize execution}} of test suites through the {\rsm \underline{sequential re-execution} of \textit{test cases}} (\textit{to avoid data races}) and the {\rsm \underline{sequential re-execution} of \textit{test classes}} (\textit{to avoid broken test dependencies}).}
+\end{itemize}
+\begin{center}
+\begin{figure}[!htb]
+\centering
+\begin{minipage}{0.475\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{images/soundy.pdf}	
+\end{minipage}%
+\pause
+\begin{minipage}{0.5\textwidth}
+	\centering
+	\includegraphics[width=1.175\linewidth]{images/time.pdf}\vspace{-1cm}
+	\includegraphics[width=1.175\linewidth]{images/speedup.pdf}	
+\end{minipage}
+\end{figure}	
+\vfill
+\vfill
+\pause
+\begin{Large}
+	Thank You
+\end{Large}
+\vfill
+\begin{footnotesize}
+	Artifacts: \url{https://github.com/STAR-RG/paste}\\
+	E-mail: \href{mailto:shouvick.mondal.cemk@gmail.com}{\texttt{shouvick.mondal.cemk@gmail.com}}
+\end{footnotesize}
+\end{center}
+\end{frame}
+
+%======================================================================================================
+
+\renewcommand{\disp}{}
+
+\appendix
+\backupbegin
+
+\begin{frame}
+	\begin{center}
+		{\huge Backup Slides}
+	\end{center}
+\end{frame}
+
+\backupend
+
+\end{document}
