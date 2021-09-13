@@ -139,36 +139,6 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 \renewcommand{\disp}{}
 \begin{frame}
 	\begin{center}
-		{\rsm \textbf{The spectrum of soundness}} 
-	\end{center}
-\end{frame}
-\endgroup
-\addtocounter{framenumber}{-1}
-
-\begin{frame}{The spectrum of soundness in parallelization}
-	
-{\textbf{\rsm Sound}: time invariant verdicts agree with sequential execution.}
-\begin{center}
-\includegraphics[width=0.8\linewidth,page=1]{images/spectrum.pdf}
-\vfill
-{\color{white}\tname{} does not provide the soundness guarantee but is reasonable enough to yield end-to-end acceleration!}
-\end{center}
-\end{frame}
-
-\begin{frame}{The spectrum of soundness in parallelization}
-	
-{\textbf{\rsm Sound}: time invariant verdicts agree with sequential execution.}
-	\begin{center}
-		\includegraphics[width=0.8\linewidth,page=2]{images/spectrum.pdf}
-		\vfill
-		{\color{blue}\tname{} does not provide the soundness guarantee but is reasonable enough to yield end-to-end acceleration!}
-	\end{center}
-\end{frame}
-
-\begingroup
-\renewcommand{\disp}{}
-\begin{frame}
-	\begin{center}
 		Our approach: \textbf{\tname}\\
 		{\textbf{\rsm PA}rallel-\textbf{\rsm S}equential \textbf{\rsm T}est \textbf{\rsm E}xecution}
 	\end{center}
@@ -221,6 +191,36 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 \begin{frame}{Stage 3: sequential re-execution of failed test classes}
 	\centering 
 	\includegraphics[width=0.65\linewidth,page=4]{images/soundy.pdf}
+\end{frame}
+
+\begingroup
+\renewcommand{\disp}{}
+\begin{frame}
+	\begin{center}
+		{\rsm \textbf{The spectrum of soundness in parallelization}} 
+	\end{center}
+\end{frame}
+\endgroup
+\addtocounter{framenumber}{-1}
+
+\begin{frame}{The spectrum of soundness in parallelization}
+	
+	{\textbf{\rsm Sound}: time invariant verdicts agree with sequential execution.}
+	\begin{center}
+		\includegraphics[width=0.8\linewidth,page=1]{images/spectrum.pdf}
+		\vfill
+		{\color{white}\tname{} does not provide the soundness guarantee but is reasonable enough to yield end-to-end acceleration!}
+	\end{center}
+\end{frame}
+
+\begin{frame}{The spectrum of soundness in parallelization}
+	
+	{\textbf{\rsm Sound}: time invariant verdicts agree with sequential execution.}
+	\begin{center}
+		\includegraphics[width=0.8\linewidth,page=2]{images/spectrum.pdf}
+		\vfill
+		{\color{blue}\tname{} does not provide the soundness guarantee but is reasonable enough to yield end-to-end acceleration!}
+	\end{center}
 \end{frame}
 
 \begingroup
@@ -388,6 +388,7 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 
 %======================================================================================================
 
+\REM{
 
 \renewcommand{\disp}{}
 
@@ -501,5 +502,6 @@ public class ClassificationSearchProcessorTest ... {
 \end{frame}
 
 \backupend
+}
 
 \end{document}
