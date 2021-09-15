@@ -32,101 +32,75 @@
 	{\includegraphics[width=\linewidth]{images/evolution.pdf}}
 \end{center}
 \vspace{-4mm}
-\pause
-{\textit{RetestAll}: execute all test-cases sequentially? ({\color{red}\textit{expensive}!})}\pause\\
-Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnotemark\\\pause
-\textit{Sophisticated solutions}
+\begin{center}
+{\fontsize{10}{10}\selectfont
+{\rsm \textbf{Regression testing}}: testing software changes for regression bugs.}
+\end{center}\pause
+\textit{Existing solutions}
 \begin{itemize}
-	\item{{\small Regression test {\rsm selection} (RTS).}\onslide<4->\footnotemark}\pause
-	\item{{\small Regression test {\rsm prioritization} (RTP).}\onslide<5->\footnotemark}\pause
-	\item{{\small Test-suite {\rsm reduction} (TSR).}\onslide<6->\footnotemark}\pause
-	\item{\textbf{\color{blue}\textit{Test-execution parallelization}} (\textit{is less explored}...).\onslide<7->\footnotemark}
+	\item[]{{\small Regression Test {\rsm Selection} (RTS)}\onslide<2->\footnotemark}\pause
+	\item[]{{\small Regression Test {\rsm Prioritization} (RTP)}\onslide<3->\footnotemark}\pause
+	\item[]{{\small Test Suite {\rsm Reduction} (TSR)}\onslide<4->\footnotemark}\pause
+	\item[]{\textbf{\color{blue}\textit{Test execution parallelization}} (\textit{\color{red}is less explored}...).\onslide<5->\footnotemark}
 \end{itemize}
 \vfill
-\only<3->{\footnotetext[1]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: S. Elbaum et al., \textit{Prioritizing Test Cases for Regression Testing}, ISSTA 2000.}}
-\only<4->{\footnotetext[2]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: M. Gligoric et al., \textit{Ekstazi: Lightweight Test Selection}, ICSE 2015.}}
-\only<5->{\footnotetext[3]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: S. Elbaum et al., \textit{Test Case Prioritization: A Family of Empirical Studies}, TSE 2002.}}
-\only<6->{\footnotetext[4]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: G. Rothermel et al., \textit{Empirical Studies of Test-Suite Reduction.}, STVR 2002.}}
-\only<7->{\footnotetext[5]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact.}, ASE 2017.}}
+\only<2->{\footnotetext[1]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: M. Gligoric et al., \textit{Ekstazi: Lightweight Test Selection}, ICSE 2015.}}
+\only<3->{\footnotetext[2]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: S. Elbaum et al., \textit{Test Case Prioritization: A Family of Empirical Studies}, TSE 2002.}}
+\only<4->{\footnotetext[3]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: G. Rothermel et al., \textit{Empirical Studies of Test-Suite Reduction.}, STVR 2002.}}
+\only<5->{\footnotetext[4]{\fontsize{3.5}{3.5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact.}, ASE 2017.}}
 \end{frame}
 
-\begin{frame}{Test parallelization levels}
-\centering
-\includegraphics[width=\linewidth,page=1]{images/intro.pdf}
-\vfill
-{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
-\vfill
-\vfill
-{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
-\end{frame}
-
-\begin{frame}{Test parallelization levels}
-\centering
-\includegraphics[width=\linewidth,page=2]{images/intro.pdf}
-\vfill
-{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
-\vfill
-\vfill
-{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
-\end{frame}
-
-\begin{frame}{Test parallelization levels}
-\centering
-\includegraphics[width=\linewidth,page=3]{images/intro.pdf}
-\vfill
-{\color{black}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
-\vfill
-\vfill
-{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
-\end{frame}
-
-\begin{frame}{Test flakiness: a major issue due to parallelization}
+\begin{frame}{Two issues in test parallelization}
 \begin{center}
-{\{{\color{blue}\textbf{Test dependencies}, \textbf{Data-races}}\}$\rightarrow$\{{\color{red}\textbf{flakiness}}\}}
+{\color{blue}\textbf{Test dependencies} {\color{black}and} \textbf{data races}} give rise to {\color{red}\textbf{test flakiness}}.
+\pause
 \includegraphics[width=0.6\linewidth,page=1]{images/flakes.pdf}
 \end{center}
 \end{frame}
 
-\begin{frame}{Test flakiness: a major issue due to parallelization}
+\begin{frame}{Two issues in test parallelization}
 	\begin{center}
-{\{{\color{blue}\textbf{Test dependencies}, \textbf{Data-races}}\}$\rightarrow$\{{\color{red}\textbf{flakiness}}\}}
+{\color{blue}\textbf{\textit{Test dependencies}} {\color{black}and} \textbf{\color{black}data races}} give rise to {\color{red}\textbf{test flakiness}}.
 		\includegraphics[width=0.6\linewidth,page=2]{images/flakes.pdf}
 	\end{center}
 \end{frame}
 
-\begin{frame}{Test flakiness: a major issue due to parallelization}
+\begin{frame}{Two issues in test parallelization}
 	\begin{center}
-{\{{\color{blue}\textbf{Test dependencies}, \textbf{Data-races}}\}$\rightarrow$\{{\color{red}\textbf{flakiness}}\}}
+		{\textbf{Test dependencies} {\color{black}and} \textbf{\color{blue}\textit{data races}}} give rise to {\color{red}\textbf{test flakiness}}.
 		\includegraphics[width=0.6\linewidth,page=3]{images/flakes.pdf}
 	\end{center}
 \end{frame}
 
-\begin{frame}{Test flakiness: a major issue due to parallelization}
+\begin{frame}{Two issues in test parallelization}
 	\begin{center}
-{\{{\color{blue}\textbf{Test dependencies}, \textbf{Data-races}}\}$\rightarrow$\{{\color{red}\textbf{flakiness}}\}}
+{\color{blue}\textbf{Test dependencies} {\color{black}and} \textbf{data races}} give rise to {\color{red}\textbf{test flakiness}}.
 		\includegraphics[width=0.8\linewidth,page=4]{images/flakes.pdf}
 	\end{center}
+{\color{white}
+\centering
+A topological sort would reveal a {\textbf{safe}} execution sequence.}
 \end{frame}
 
-\begingroup
-\renewcommand{\disp}{}
-\begin{frame}
+\begin{frame}{Two issues in test parallelization}
 	\begin{center}
-		{\rsm Test dependency detection}: \textit{can it aid test parallelization}? 
+		{\color{blue}\textbf{Test dependencies} {\color{black}and} \textbf{data races}} give rise to {\color{red}\textbf{test flakiness}}.
+		\includegraphics[width=0.8\linewidth,page=7]{images/flakes.pdf}
 	\end{center}
+\centering
+A {\rsm topological sort} would reveal a {\color{indiagreen}\textbf{safe}} execution sequence.\\\pause
+But {\color{darkred}\textbf{prerequisite}} is \textit{test dependency detection}!
 \end{frame}
-\endgroup
-\addtocounter{framenumber}{-1}
 
-\begin{frame}{Test dependency detection can be costly!}
-	State-of-the-art dependency detector: PRADET (ICST 2018).
+\begin{frame}{Performance of a test dependency detector}
+	\textit{State-of-the-art tool}: PRADET (ICST 2018)
 	\vfill
 	\fbox{\rsm \textbf{PRADET}}
 	\begin{itemize}
 		\fontsize{11}{11}\selectfont
-		\item[]{\underline{\textbf{Step 1} (costs $x$)}: {\rsm Sequential execution} to record original test ordering.}\pause
-		\item[]{\underline{\textbf{Step 2} (costs $y$)}: {\rsm Dynamic data-flow analysis} collect data dependencies.}\pause
-		\item[]{\underline{\textbf{Step 3} (costs $z$)}: {\rsm Iterative refinement} to keep problematic dependencies.}\pause
+		\item[]{{\textbf{Step 1} (costs $x$)}: {\rsm Sequential execution}}\pause
+		\item[]{{\textbf{Step 2} (costs $y$)}: {\rsm Dynamic data-flow analysis}}\pause
+		\item[]{{\textbf{Step 3} (costs $z$)}: {\rsm Dependency refinement}}\pause
 	\end{itemize}
 	\begin{center}
 		\begin{tcolorbox}
@@ -135,47 +109,13 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 	\end{center}
 \end{frame}
 
-\begingroup
-\renewcommand{\disp}{}
 \begin{frame}
 	\begin{center}
 		Our approach: \textbf{\tname}\\
-		{\textbf{\rsm PA}rallel-\textbf{\rsm S}equential \textbf{\rsm T}est \textbf{\rsm E}xecution}
+		{\textbf{\rsm PA}rallel-\textbf{\rsm S}equential \textbf{\rsm T}est \textbf{\rsm E}xecution}\pause
+		\vfill
+		\includegraphics[width=0.8\linewidth,page=1]{images/soundy.pdf}
 	\end{center}
-\end{frame}
-\endgroup
-\addtocounter{framenumber}{-1}
-
-\begin{frame}{Our approach: \textbf{\tname}}
-	
-\textbf{\tname} builds on the observation:\\
-{\rsm \textit{\textbf{broken test dependencies}}} that are manifested in parallel runs {\rsm \textit{\textbf{involve test cases from the same test class}}}.
-	\begin{center}
-		\begin{minipage}{0.48\linewidth}
-			\centering
-			\includegraphics[width=\linewidth,page=5]{images/flakes.pdf}
-			%\vspace{1mm}
-		\end{minipage}%
-		\hfill
-		\begin{minipage}{0.48\linewidth}
-			\centering
-			\includegraphics[width=\linewidth,page=6]{images/flakes.pdf}
-			%\vspace{1mm}
-		\end{minipage}\pause
-	\begin{tcolorbox}
-	\vfill
-	\textbf{Handle flakiness} in test suites through:
-	\begin{itemize}
-		\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test cases} \\({\textit{to avoid {\color{red}\textbf{data races}}}}).}
-		\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test classes} \\({\textit{to avoid {\color{red}\textbf{broken test dependencies}}}}).}
-	\end{itemize}
-	\end{tcolorbox}
-	\end{center}
-\end{frame}
-
-\begin{frame}{\textbf{\tname{}}: the three-staged pipeline of test execution}
-	\centering 
-	\includegraphics[width=0.8\linewidth,page=1]{images/soundy.pdf}
 \end{frame}
 
 \begin{frame}{Stage 1: parallel execution}
@@ -183,9 +123,40 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 	\includegraphics[width=0.65\linewidth,page=2]{images/soundy.pdf}
 \end{frame}
 
+\begin{frame}{Stage 1: parallel execution}
+	\begin{center}
+	{\includegraphics[width=0.5\linewidth,page=8]{images/flakes.pdf}}
+	\end{center}
+\centering
+Execute the four test methods \textbf{\color{blue}in parallel}.\pause
+\\Some test cases may fail!
+\end{frame}
+
 \begin{frame}{Stage 2: sequential re-execution of failed test cases}
 	\centering 
 	\includegraphics[width=0.65\linewidth,page=3]{images/soundy.pdf}
+\end{frame}
+
+\begin{frame}{Stage 2: sequential re-execution of failed test cases}
+	\begin{center}
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=0.85\linewidth,page=1]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=0.85\linewidth,page=3]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}	
+	\end{center}
+	\textbf{Handle flakiness} through \textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test cases} ({\textit{to circumvent {\color{red}\textbf{data races}}}}).\pause
+	\vfill
+	\begin{center}
+	Some test cases may fail \textit{\textbf{again}}! \\
+	Track their test class names.
+	\end{center}
 \end{frame}
 
 \begin{frame}{Stage 3: sequential re-execution of failed test classes}
@@ -193,15 +164,25 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 	\includegraphics[width=0.65\linewidth,page=4]{images/soundy.pdf}
 \end{frame}
 
-\begingroup
-\renewcommand{\disp}{}
-\begin{frame}
+\begin{frame}{Stage 3: sequential re-execution of failed test classes}
+\textbf{Handle flakiness} through \textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test classes} ({\textit{to circumvent {\color{red}\textbf{broken test dependencies}}}}).
 	\begin{center}
-		{\rsm \textbf{The spectrum of soundness in parallelization}} 
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=0.85\linewidth,page=1]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=0.85\linewidth,page=2]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}
 	\end{center}
+\pause
+	\textbf{\tname} builds on the observation:\\
+{\color{darkred} \textit{\textbf{broken test dependencies}}} that are manifested in parallel runs {\rsm \textit{\textbf{involve test cases from the same test class}}}.
 \end{frame}
-\endgroup
-\addtocounter{framenumber}{-1}
 
 \begin{frame}{The spectrum of soundness in parallelization}
 	
@@ -235,11 +216,10 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 
 \begin{frame}{Experimental Setup}
 	\begin{itemize}
-		\item{\textbf{\underline{Hardware}}: \textbf{\rsm \NumCPUs\ CPUs} (\textbf{\rsm \NumCores\ cores}, with \textbf{\rsm 2 threads per core}).}\pause
-		\item{\textbf{\underline{Software}}: GNU \textbf{\rsm {Bash}} \BashVersion, and \textbf{\rsm {Maven}} \MavenVersion.}\pause
-		\item{\textbf{\underline{Subjects}}: \textbf{\rsm \NumProjects\ Java projects} that use \textbf{\rsm {Maven}} and have at least \NumStars\ stars and \NumTests\ tests.}\pause
-		\item{\textbf{\underline{No failures}}: Reran each test suite \NumRepeatsManifest\ times to \textbf{\rsm identify} and \textbf{\rsm eliminate tests failing} due to \textbf{\rsm non-determinism}.}\pause
-		\item{\textbf{\underline{Parallel configuration}}: parameters in \textbf{\rsm Maven} and \textbf{\rsm JUnit}.}
+		\item[]{\textbf{\underline{Hardware}}: \textbf{\rsm \NumCPUs\ CPUs} (\textbf{\rsm \NumCores\ cores}, with \textbf{\rsm 2 threads per core}).}\pause
+		\item[]{\textbf{\underline{Software}}: GNU \textbf{\rsm {Bash}} \BashVersion, and \textbf{\rsm {Maven}} \MavenVersion.}\pause
+		\item[]{\textbf{\underline{Subjects}}: \textbf{\rsm \NumProjects\ Java projects} that use \textbf{\rsm {Maven}} and have at least \NumStars\ stars and \NumTests\ tests.}\pause
+		\item[]{\textbf{\underline{No failures}}: Reran each test suite \NumRepeatsManifest\ times to \textbf{\rsm identify} and \textbf{\rsm eliminate tests failing} due to \textbf{\rsm non-determinism}.}
 	\end{itemize}
 \end{frame}
 
@@ -289,23 +269,6 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 	\end{center}
 \end{frame}
 
-\begin{frame}{RQ4 (effectiveness \#2)}
-	\vspace{-1.2cm}
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/time.pdf}
-		\vspace{-1.4cm}
-		\caption*{Distribution of {\rsm \textbf{\tname{} running times (seconds)}} for Sequential (S) and each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
-	\end{figure}
-	\vspace{-1.25cm}\pause
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/speedup.pdf}
-		\vspace{-1.6cm}
-		\caption*{Distribution of {\rsm \textbf{speedups}} for each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
-	\end{figure}
-\end{frame}
-
 \begingroup
 \renewcommand{\disp}{}
 \begin{frame}
@@ -316,37 +279,31 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 \endgroup
 \addtocounter{framenumber}{-1}
 
-\begin{frame}{Some recent approaches towards test parallelization}
+\begin{frame}{Most relevant related work}
 	\begin{center}
 		\fontsize{7.5}{7.5}
 		{	
 			\selectfont
 			\setlength{\tabcolsep}{0.9mm}
 			\centering
-			\begin{tabular}{l|l|r|l}
+			\begin{tabular}{l|l|l}
 				\hline
-				{\textbf{Work--venue}} & {\textbf{Languages used}} & {\textbf{Speedup}} & {\textbf{Machine type}}\\
+				{\textbf{Work--venue}} & {\textbf{Description}} & {\textbf{Relation}}\\
 				\hline
-				{} & {} & {} & {}\\
-				{{\rsm ElectricTest}--FSE 2015} & {\rsm Java} & {Avg. $16.00\times$} & {Amazon EC2}\\
-				{} & {} & {} & {}\\
-				\hline
-				{} & {} & {} & {}\\
-				%{{\rsm GPU execution}--ASE 2014} & {CUDA and {\rsm C (subset)}} & {Max. $27.00\times$} & {GPU}\\
-				{{\rsm ParTeCL} (GPU)--ISSTA 2017} & {OpenCL and {\rsm C (subset)}} & {Avg. $16.00\times$} & {GPU}\\
-				{} & {} & {} & {}\\
-				\hline
-				{} & {} & {} & {}\\
-				{Candido et al.--ASE 2017} & {\rsm Java} & {Avg. $3.53\times$} & {8 cores @ 3.60 GHz}\\
-				%{} & {Avg. $1.90\times$} & {80 cores @ 2.20 GHz}\\
-				{({\rsm multi-core})} & {} & {Avg. $4.20\times$} & {80 cores @ 2.20 GHz}\\
-				{} & {} & {} & {}\\
-				\hline
-				{} & {} & {} & {}\\
-				{\mahtab--JSS 2019} & {C++, LLVM, and {\rsm C}} & {Avg. $5.17\times$} & {40 cores @ 2.40 GHz}\\
-				%{} & {Avg. $1.90\times$} & {80 cores @ 2.20 GHz}\\
-				{({\rsm multi-core})} & {} & {G.M. $4.72\times$} & {40 cores @ 2.40 GHz}\\
-				{} & {} & {} & {}\\
+				{} & {} & {} \\
+				{{\rsm ElectricTest}--FSE 2015} & {Tracks {\rsm test dependencies} on global} & {Complementary}\\
+				{} & {resources + {\rsm distributed parallelization}.} & {} \\
+				{} & {} & {} \\
+				\hline\pause
+				{} & {} & {} \\
+				{{\rsm ParTeCL}--ISSTA 2017} & {Transforms code to GPU kernels} & {Domain specific}\\
+				{} & {for {\rsm GPU level parallelization}.} & {Yet to explore} \\
+				{} & {} & {} \\
+				\hline\pause
+				{} & {} & {} \\
+				{{\rsm TEDD}--FSE 2019} & {NLP-based {\rsm web test dependency} detector} & {Domain specific}\\
+				{} & {tracks client-server {\rsm network operations}.} & {Yet to explore} \\
+				{} & {} & {} \\
 				\hline
 			\end{tabular}
 		}	
@@ -389,7 +346,7 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 %======================================================================================================
 
 \REM{
-
+	
 \renewcommand{\disp}{}
 
 \appendix
@@ -401,107 +358,82 @@ Industrial example: RetestAll took seven weeks to complete!\onslide<3->\footnote
 	\end{center}
 \end{frame}
 
-\begin{frame}{TODOs for the slides...}
-	\begin{itemize}
-		\item[]{\textbf{Time split (in minutes)}:\\3 (context) + 3 (\tname{}) + 4 (eval, related, conclusion).}
-		\vfill
-		\item{\textbf{Be on point} about regression testing, avoid detail.}
-		\item{\textbf{Mention briefly} about efficiency of reg. testing. RTS, RTP, TSR, parallelization (\textit{we focus here}): complementary + industry relevant + less explored academically.}
-		\item{\textbf{Parallelization} (focus on two issues only):\\\{data-races, broken test dependencies\}$\rightarrow$\{flakiness\}.}
-		\item{\textbf{Simplify example}: too convoluted currently! \textit{Simplify}..}
-		\item{\textbf{Spectrum} (show explicitly: \textit{beautify}):\\(fast, unsound) ------ (\tname{}, soundy) ----- (slow, sound).}
-		\item{\textbf{Simplify text}: keep only keywords + messages, no singleton bullet, max 2 lines per bullet.}
-		\item{\textbf{Simplify RQs} (\textit{gray boxes only}): be on point, \textit{Simplify}..}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Context: software evolution and regression testing}
-	
-	{\rsm Consider manipulating a function}:\\
-	$\{f(x)=2+x\}$ $\rightarrow$ $\{f'(x)=2*x\}$.\\
-	\vspace{0.3cm}
-	\pause
-	Inputs (test-cases): {\rsm 2}, {\rsm 4}\\
-	\textit{Expected} outputs: {\color{indiagreen}4}, {\color{indiagreen}6}\\\pause
-	\textit{Observed} outputs: {\color{indiagreen}4}, {\color{red}8}\\
-	\vspace{0.3cm}\pause
-	{\color{indiagreen}Functionality}: $f({\rsm 2})=f'({\rsm 2})=\color{indiagreen}4$ is still intact.\\
-	\vspace{0.3cm}\pause
-	\vspace{-4mm}
-	{\color{red} Failure} (functional discrepancy) revealed: $f({\rsm 4})\neq f'({\rsm 4})$.\\
-	\vspace{0.3cm}\pause
-	{\textit{Relation with software testing}: RetestAll ({\color{red}\textit{expensive}!})}\\
-	Industrial example: RetestAll took seven weeks to complete!\onslide<6->\footnotemark\\\pause
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=1]{images/intro.pdf}
 	\vfill
-	\textit{Sophisticated solutions}
-	\begin{itemize}
-		\item{Regression test {\rsm selection} (RTS).}
-		\item{Regression test {\rsm prioritization} (RTP).}
-		\item{Test-suite {\rsm reduction} (TSR).}\pause
-		\item{\textbf{\color{blue}\textit{Test-execution parallelization}} (or Test parallelization).}
-	\end{itemize}
-	\only<6->{\footnotetext[6]{\fontsize{5}{5}\selectfont\textbf{Source}: S. Elbaum et al., \textit{Prioritizing Test Cases for Regression Testing}, ISSTA 2000.}}
+	{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
+	\vfill
+	\vfill
+	{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
 \end{frame}
 
-\begin{frame}[fragile]{Example: test order dependency}
-\vspace{-13mm}
-\begin{center}
-	\begin{table}[h]
-		\centering
-		\begin{tabular}{c}
-\begin{lstlisting}[caption=Test order dependency on the project \texttt{\textbf{Atlas}} (commit\# acb9880).,captionpos=b,label={lst:rq3-example},keywords={totalClassifiedEntities,searchByALLTag,searchByALLTagAndIndexSysFiltersToTestLimit,params,graph},escapechar=|,tabsize=1]
-public class ClassificationSearchProcessorTest ... {
-	private AtlasGraph |\textbf{graph}|; |\label{line:graph-decl}|
-	private int |\textbf{totalClassifiedEntities}| = 0; ...|\label{line:totClass-decl}\pause|
-	
-	@Test
-	public void |\textbf{searchByALLTag}|() throws AtlasBaseException {
-		...
-		|\textbf{params}|.setLimit(20); |\label{line:params-limit}|
-		SearchContext context = 
-		new SearchContext(|\textbf{params}|, |\textbf{graph}|, ...);|\label{line:params-context}|
-		ClassificationSearchProcessor processor = new ClassificationSearchProcessor(context);|\label{line:params-processor}|
-		List<AtlasVertex> vertices = processor.execute(); |\label{line:vertices-earchByALLTag}|
-		Assert.assertTrue(CollectionUtils.isNotEmpty(vertices));
-		|\textbf{totalClassifiedEntities}| = vertices.size(); |\label{line:settotalClassifiedEntities}|
-	} ...|\pause|
-	
-	@Test
-	public void |\textbf{searchByALLTagAndIndexSysFiltersToTestLimit}|() throws AtlasBaseException { 
-		...
-		|\textbf{params}|.setLimit(|\textbf{totalClassifiedEntities}| - 2);|\label{line:bad-value}| |\label{line:gettotalClassifiedEntities}|
-		SearchContext context = 
-		new SearchContext(|\textbf{params}|, |\textbf{graph}|, ...);
-		ClassificationSearchProcessor processor = new ClassificationSearchProcessor(context);
-		List<AtlasVertex> vertices = processor.execute(); |\label{line:error-execute}|
-		Assert.assertTrue(CollectionUtils.isNotEmpty(vertices)); |\label{line:error-line}|
-	}...}
-\end{lstlisting}
-		\end{tabular}
-		\vspace{-7ex}
-	\end{table}
-\end{center}
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=2]{images/intro.pdf}
+	\vfill
+	{\color{white}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
+	\vfill
+	\vfill
+	{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
 \end{frame}
 
-\begin{frame}{Our approach: \textbf{\tname}}
+\begin{frame}{Test parallelization levels}
+	\centering
+	\includegraphics[width=\linewidth,page=3]{images/intro.pdf}
+	\vfill
+	{\color{black}In this work, we focus on \textit{CPU} and \textit{thread} level parallelism.}
+	\vfill
+	\vfill
+	{\fontsize{5}{5}\selectfont\textbf{Source}: J. Candido et al., \textit{Test suite parallelization in open-source projects: A study on its usage and impact}, ASE 2017.}
+\end{frame}
+
+\begin{frame}{The rationale behind \textbf{\tname}}
+	
+	\textbf{\tname} builds on the observation:\\
+	{\rsm \textit{\textbf{broken test dependencies}}} that are manifested in parallel runs {\rsm \textit{\textbf{involve test cases from the same test class}}}.
 	\begin{center}
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=\linewidth,page=5]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}%
+		\hfill
+		\begin{minipage}{0.48\linewidth}
+			\centering
+			\includegraphics[width=\linewidth,page=6]{images/flakes.pdf}
+			%\vspace{1mm}
+		\end{minipage}\pause
 		\begin{tcolorbox}
-			\textbf{Parallelize} execution of test suites through:
+			\vfill
+			\textbf{Handle flakiness} in test suites through:
 			\begin{itemize}
-				\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test cases} (\underline{\textit{to avoid {\color{red}\textbf{data races}}}}).}
-				\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test classes} (\underline{\textit{to avoid {\color{red}\textbf{broken test dependencies}}}}).}
+				\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test cases} \\({\textit{to avoid {\color{red}\textbf{data races}}}}).}
+				\item{\textbf{sequential} {\color{blue}\textbf{re-execution}} of \textbf{\color{indiagreen}test classes} \\({\textit{to avoid {\color{red}\textbf{broken test dependencies}}}}).}
 			\end{itemize}
 		\end{tcolorbox}
 	\end{center}
-	\begin{itemize}
-		\item{\textbf{\tname}~({\rsm \textbf{PArallel-Sequential Test Execution}}), an approach to \textit{\rsm \underline{automate}} parallel execution of tests.}\pause
-		\item{\textbf{\tname} builds on the observation that {\rsm \textit{\underline{broken test dependencies}}} that are manifested in parallel runs {\rsm \textit{\underline{involve test cases from the same test class}}}.}\pause
-		\item{\textbf{\tname} leverages that observation to \textit{\rsm \underline{reinstate those dependencies by running}} the tests from the same class in the same order.}\pause
-		\item{\textbf{\tname} is organized as a pipeline of \textit{\underline{three stages}}.}
-	\end{itemize} 
+\end{frame}
+
+\begin{frame}{RQ4 (effectiveness \#2)}
+	\vspace{-1.2cm}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/time.pdf}
+		\vspace{-1.4cm}
+		\caption*{Distribution of {\rsm \textbf{\tname{} running times (seconds)}} for Sequential (S) and each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
+	\end{figure}
+	\vspace{-1.25cm}\pause
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/speedup.pdf}
+		\vspace{-1.6cm}
+		\caption*{Distribution of {\rsm \textbf{speedups}} for each configuration (Classes (C), Methods (M), ClassesMethods (CM)).}
+	\end{figure}
 \end{frame}
 
 \backupend
+
 }
 
 \end{document}
